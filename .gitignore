@@ -9,5 +9,8 @@ logs
 *.log
 npm-debug.log*
 
+# Code coverage
+coverage
+
 # IDE
 .vscode

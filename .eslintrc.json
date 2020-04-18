@@ -1,11 +1,13 @@
 {
   "env": {
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": [
     "airbnb-base",
     "plugin:prettier/recommended",
-    "plugin:security/recommended"
+    "plugin:security/recommended",
+    "plugin:jest/recommended"
   ],
   "plugins": [
     "prettier",
@@ -14,5 +16,7 @@
   "parserOptions": {
     "ecmaVersion": 2018
   },
-  "rules": {}
+  "rules": {
+    "security/detect-object-injection": "off"
+  }
 }

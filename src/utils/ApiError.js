@@ -10,7 +10,7 @@ class ApiError extends Error {
     constructor({ message, stack, status = httpStatus.INTERNAL_SERVER_ERROR, isPublic = false }) {
         super(message);
         this.name = this.constructor.name;
-        this.message = message;
+        this.message = message || httpStatus[status];
         this.status = status;
         this.isPublic = isPublic;
         this.stack = stack;
