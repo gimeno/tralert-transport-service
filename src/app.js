@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const express = require('express');
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -5,6 +6,7 @@ const compression = require('compression');
 const cors = require('cors');
 const { env } = require('./config/config');
 const morgan = require('./config/morgan');
+const error = require('./middlewares/error');
 
 const app = express();
 
@@ -32,8 +34,17 @@ app.use(compression());
 app.use(cors());
 app.options('*', cors());
 
-app.use('/', (req, res) => {
+app.use('/ok', (req, res) => {
     res.send('Working');
 });
+
+// catch 404 and forward to error handler
+app.use(error.routeNotFound);
+
+// convert error to ApiError, if needed
+app.use(error.converter);
+
+// handle error
+app.use(error.handler);
 
 module.exports = app;

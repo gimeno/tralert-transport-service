@@ -1,15 +1,7 @@
 const { createLogger, transports, format } = require('winston');
 const { env } = require('./config');
 
-const enumerateErrorFormat = format((info) => {
-    if (info instanceof Error) {
-        Object.assign(info, { message: info.stack });
-    }
-    return info;
-});
-
 const commonFormat = format.combine(
-    enumerateErrorFormat(),
     format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
     format.splat(),
     format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`)
