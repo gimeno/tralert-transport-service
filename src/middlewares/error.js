@@ -1,5 +1,4 @@
 const httpStatus = require('http-status');
-const expressValidation = require('express-validation');
 const ApiError = require('../utils/ApiError');
 
 // eslint-disable-next-line no-unused-vars
@@ -20,14 +19,7 @@ const handler = (err, req, res, next) => {
 const converter = (err, req, res, next) => {
     let convertedError = err;
 
-    if (err instanceof expressValidation.ValidationError) {
-        convertedError = new ApiError({
-            message: 'Validation Error',
-            errors: err.errors,
-            status: err.status,
-            stack: err.stack
-        });
-    } else if (!(err instanceof ApiError)) {
+    if (!(err instanceof ApiError)) {
         convertedError = new ApiError({
             message: err.message,
             status: err.status,
