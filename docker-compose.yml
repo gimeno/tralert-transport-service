@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  tralert-transport-service:
+    build: .
+    image: tralert-transport-service
+    ports:
+      - "5000:$PORT"
+    volumes:
+      - .:/app
+      - /usr/src/app/node_modules

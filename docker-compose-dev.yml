@@ -1,0 +1,6 @@
+version: "3"
+
+services:
+  tralert-transport-service:
+    container_name: tralert-transport-service-dev
+    command: npm run dev
