@@ -10,8 +10,10 @@ IMAGE="${DOCKER_USER}/tralert-transport-service"
 GIT_VERSION=$(git describe --always --abbrev --tags --long)
 
 # Build, tag and push image
-docker build -t ${IMAGE}:${GIT_VERSION} .
-docker tag ${IMAGE}:${GIT_VERSION} ${IMAGE}:${environment}
+docker build -t service .
+docker tag service ${IMAGE}:${GIT_VERSION}
 docker push ${IMAGE}:${GIT_VERSION}
+docker tag service ${IMAGE}:${environment}
+docker push ${IMAGE}:${environment}
 
 exit 0
