@@ -3,7 +3,7 @@
 environment=${1}
 
 # Log in to Docker Hub
-echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USER}" --password-stdin
 
 # Docker image name and tags
 IMAGE="${DOCKER_USER}/tralert-transport-service"
