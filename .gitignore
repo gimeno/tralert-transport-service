@@ -12,6 +12,9 @@ npm-debug.log*
 # Code coverage
 coverage
 
+# Code Climate reporter
+cc-test-reporter
+
 # IDE
 .vscode
 .idea
