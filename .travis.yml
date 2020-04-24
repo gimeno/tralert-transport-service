@@ -3,6 +3,9 @@ language: node_js
 node_js:
   - "12"
 
+services:
+  - docker
+
 cache: npm
 
 before_script:
@@ -16,3 +19,15 @@ script:
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+deploy:
+  # deploy develop to the staging environment
+  - provider: script
+    script: bash deploy.sh development
+    on:
+      branch: development
+  # deploy master to production
+  - provider: script
+    script: bash deploy.sh production
+    on:
+      branch: master
