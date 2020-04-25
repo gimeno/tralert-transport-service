@@ -2,7 +2,10 @@ version: "3"
 
 services:
   tralert-transport-service:
+    container_name: tralert-transport-service
     build: .
     image: tralert-transport-service
     ports:
       - "5000:$PORT"
+    environment:
+      - LOGS_TOKEN=${LOGS_TOKEN}
