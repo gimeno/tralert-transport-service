@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Microservice to obtain transport data",
   "author": "Roberto Gimeno",
+  "repository": "https://github.com/gimeno/tralert-transport-service.git",
   "scripts": {
     "start": "node src/index.js",
     "dev": "cross-env NODE_ENV=development nodemon -r dotenv/config src/index.js",

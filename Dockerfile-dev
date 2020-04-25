@@ -20,6 +20,6 @@ ENV CHROMIUM_PATH /usr/bin/chromium-browser
 
 COPY . .
 
-RUN npm install --production
+RUN npm install
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
