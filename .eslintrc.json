@@ -17,6 +17,12 @@
     "ecmaVersion": 2018
   },
   "rules": {
-    "security/detect-object-injection": "off"
+    "security/detect-object-injection": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "next"
+      }
+    ]
   }
 }

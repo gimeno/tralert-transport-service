@@ -3,7 +3,8 @@ const Joi = require('@hapi/joi');
 const envVarsSchema = Joi.object()
     .keys({
         NODE_ENV: Joi.string().valid('production', 'development', 'test').default('production'),
-        PORT: Joi.number().default(5000)
+        PORT: Joi.number().default(5000),
+        CHROMIUM_PATH: Joi.string().default('')
     })
     .unknown();
 
@@ -15,5 +16,6 @@ if (error) {
 
 module.exports = {
     env: envVars.NODE_ENV,
-    port: envVars.PORT
+    port: envVars.PORT,
+    chromiumPath: envVars.CHROMIUM_PATH
 };

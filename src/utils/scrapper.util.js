@@ -1,6 +1,7 @@
 const moment = require('moment');
 const puppeteer = require('puppeteer');
 const $ = require('cheerio');
+const { chromiumPath } = require('../config/config');
 
 const TRAIN_WEBSITE = 'https://venta.renfe.com/vol/home.do?c=_0bNa';
 
@@ -15,7 +16,16 @@ const selectors = {
 
 const getTrainsFromRenfe = async ({ from, to, departDate }) => {
     // Prepare puppeteer
-    const browser = await puppeteer.launch();
+    let browser;
+    if (chromiumPath !== '') {
+        browser = await puppeteer.launch({
+            executablePath: chromiumPath,
+            args: ['--no-sandbox']
+        });
+    } else {
+        browser = await puppeteer.launch();
+    }
+
     const pages = await browser.pages();
     const page = pages[0];
     await page.goto(TRAIN_WEBSITE);
