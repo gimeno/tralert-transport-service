@@ -17,17 +17,10 @@ script:
   - npm run lint
   - npm run coverage
 
-after_script:
+after_success:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 deploy:
-  # deploy heroku only for dev
-  - provider: heroku
-    api_key:
-      secure: $HEROKU_API_KEY
-    app: tralert-transport-service-dev
-    on:
-      branch: development
   # deploy develop to the staging environment
   - provider: script
     script: bash deploy.sh development
