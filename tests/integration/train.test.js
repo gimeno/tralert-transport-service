@@ -61,8 +61,8 @@ describe('Train routes', () => {
                 .get('/trains')
                 .query(query)
                 .then((res) => {
+                    expect(res.status).toEqual(httpStatus.BAD_REQUEST);
                     expect(res.body).toEqual({
-                        code: httpStatus.BAD_REQUEST,
                         message: '"from" is required'
                     });
                 });
@@ -74,8 +74,8 @@ describe('Train routes', () => {
                 .get('/trains')
                 .query(query)
                 .then((res) => {
+                    expect(res.status).toEqual(httpStatus.BAD_REQUEST);
                     expect(res.body).toEqual({
-                        code: httpStatus.BAD_REQUEST,
                         message: '"departDate" must be greater than "now"'
                     });
                 });
@@ -87,14 +87,14 @@ describe('Train routes', () => {
                 .get('/trains')
                 .query(query)
                 .then((res) => {
+                    expect(res.status).toEqual(httpStatus.BAD_REQUEST);
                     expect(res.body).toEqual({
-                        code: httpStatus.BAD_REQUEST,
                         message: '"returnDate" must be larger than or equal to "ref:departDate"'
                     });
                 });
         });
 
-        test('should return 500 if no data is retrieved', async () => {
+        test('should return 500 if an error is thrown while fetching the data', async () => {
             const errorMessage = 'Async error';
             getTrainsFromRenfe.mockRejectedValue(new Error(errorMessage));
 
@@ -102,8 +102,8 @@ describe('Train routes', () => {
                 .get('/trains')
                 .query(query)
                 .then((res) => {
-                    const { body } = res;
-                    expect(body).toHaveProperty('code', httpStatus.INTERNAL_SERVER_ERROR);
+                    const { body, status } = res;
+                    expect(status).toEqual(httpStatus.INTERNAL_SERVER_ERROR);
                     expect(body).toHaveProperty('message', errorMessage);
                     expect(body).toHaveProperty('stack');
                 });
