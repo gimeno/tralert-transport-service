@@ -5,7 +5,7 @@
   "author": "Roberto Gimeno",
   "repository": "https://github.com/gimeno/tralert-transport-service.git",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "pm2 start ecosystem.config.json",
     "dev": "cross-env NODE_ENV=development nodemon -r dotenv/config src/index.js",
     "test": "cross-env NODE_ENV=test jest tests -i",
     "test:watch": "cross-env NODE_ENV=test jest tests -i --watchAll",
@@ -27,6 +27,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "morgan": "^1.10.0",
+    "pm2": "^4.3.1",
     "puppeteer": "^3.0.0",
     "winston": "^3.2.1",
     "winston-logsene": "^2.0.7",

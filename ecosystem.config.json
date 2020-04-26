@@ -1,0 +1,14 @@
+{
+    "apps": [
+        {
+            "name": "app",
+            "script": "src/index.js",
+            "autorestart": true,
+            "watch": false,
+            "time": true,
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
