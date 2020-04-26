@@ -3,9 +3,7 @@ const ApiError = require('../utils/ApiError');
 
 const handler = (err, req, res, next) => {
     const response = {
-        code: err.status,
         message: err.message,
-        errors: err.errors,
         stack: err.stack
     };
 

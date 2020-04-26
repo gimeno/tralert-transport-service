@@ -89,7 +89,7 @@ describe('Error middlewares', () => {
 
             handler(error, httpMocks.createRequest(), res);
 
-            expect(sendSpy).toHaveBeenCalledWith(expect.objectContaining({ code: error.status, message: error.message }));
+            expect(sendSpy).toHaveBeenCalledWith(expect.objectContaining({ message: error.message }));
             expect(res.locals.errorMessage).toBe(error.message);
         });
 
@@ -101,9 +101,7 @@ describe('Error middlewares', () => {
 
             handler(error, httpMocks.createRequest(), res);
 
-            expect(sendSpy).toHaveBeenCalledWith(
-                expect.objectContaining({ code: error.status, message: error.message, stack: error.stack })
-            );
+            expect(sendSpy).toHaveBeenCalledWith(expect.objectContaining({ message: error.message, stack: error.stack }));
             expect(res.locals.errorMessage).toBe(error.stack);
         });
     });
