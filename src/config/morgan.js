@@ -9,12 +9,16 @@ const successResponseFormat = `${getIpFormat()}:method :url :status - :response-
 const errorResponseFormat = `${getIpFormat()}:method :url :status - :response-time ms - message: :message`;
 
 const successHandler = morgan(successResponseFormat, {
-    skip: (req, res) => res.statusCode >= 400,
+    skip: (req, res) => {
+        return res.statusCode >= 400 || req.baseUrl === '/api-docs';
+    },
     stream: { write: (message) => logger.info(message.trim()) }
 });
 
 const errorHandler = morgan(errorResponseFormat, {
-    skip: (req, res) => res.statusCode < 400,
+    skip: (req, res) => {
+        return res.statusCode < 400 || req.baseUrl === '/api-docs';
+    },
     stream: { write: (message) => logger.error(message.trim()) }
 });
 
