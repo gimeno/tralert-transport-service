@@ -13,7 +13,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check **/*.js",
-    "prettier:fix": "prettier --write **/*.js"
+    "prettier:fix": "prettier --write **/*.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -30,7 +32,8 @@
     "puppeteer": "^3.0.0",
     "winston": "^3.2.1",
     "winston-logsene": "^2.0.7",
-    "xss-clean": "^0.1.1"
+    "xss-clean": "^0.1.1",
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
@@ -49,5 +52,6 @@
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5",
     "supertest": "^4.0.2"
-  }
+  },
+  "snyk": true
 }
