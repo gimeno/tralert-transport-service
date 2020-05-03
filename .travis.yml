@@ -19,6 +19,7 @@ script:
 
 after_success:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - bash <(curl -Ls https://coverage.codacy.com/get.sh) report -l javascript -r coverage/lcov.info
 
 deploy:
   # deploy develop to the staging environment
